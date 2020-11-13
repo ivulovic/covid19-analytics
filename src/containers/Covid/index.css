@@ -1,0 +1,6 @@
+.cards-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 15px;
+  margin: 15px 0px;
+}

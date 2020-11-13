@@ -1,0 +1,44 @@
+.mini-chart-card{
+  padding: 15px 0px;
+  /* border: 1px solid var(--border); */
+  align-items: flex-start;
+
+}
+.mini-chart-card .title{
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.mini-chart-card .value-row{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  margin: 10px 0px 5px 0px;
+}
+.mini-chart-card .value-row > .value{
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+.mini-chart-card .growth{
+  margin-left: 10px;
+  align-items: center;
+  display: flex;
+
+  position: relative;
+  bottom: 2px;
+}
+.mini-chart-card .growth .value{
+  font-weight: 500;
+}
+.mini-chart-card .growth .text{
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+  bottom: 1px;
+  color: var(--text-secondary);
+  margin-left: 5px;
+}

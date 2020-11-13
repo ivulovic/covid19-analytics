@@ -2,29 +2,18 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import Header from "./components/Header";
 import CovidPage from "./containers/Covid";
-import DetailsPage from "./containers/Details";
+import AboutPage from "./containers/About";
 import NotFoundPage from "./containers/NotFound";
 
 function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/details">About</Link>
-          </li>
-          <li>
-            <Link to="/404">Not found</Link>
-          </li>
-        </ul>
 
-        <hr />
+        <Header />
 
         {/*
         A <Switch> looks through all its children <Route>
@@ -38,7 +27,7 @@ function App() {
             <CovidPage />
           </Route>
           <Route path="/details">
-            <DetailsPage />
+            <AboutPage />
           </Route>
           <Route>
             <NotFoundPage />

@@ -1,0 +1,44 @@
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding: 0 15px;
+}
+nav li{
+  display: inline-block;
+}
+nav a{
+  display: block;
+  text-decoration: none;
+}
+nav .logo li a{
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 15px 0px;
+}
+nav .logo li a span:first-child{
+  color: var(--primary)!important;
+  font-weight: 700;
+  color: inherit;
+}
+nav .logo li a span:last-child{
+  color: var(--text-primary);
+  display: inline-block;
+  font-weight: 400;
+}
+
+nav .navigation{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 15px;
+}
+nav .navigation a.active{
+  color: var(--primary);
+}
+nav .navigation a{
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.2s ease-in-out;
+}
