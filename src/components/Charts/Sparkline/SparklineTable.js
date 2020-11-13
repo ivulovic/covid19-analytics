@@ -1,15 +1,18 @@
 import React from 'react'
+import { formatNumber } from '../../../utils/number.utils'
 import SparkLine from './Sparkline'
 
 
 
 class SparkLineTable extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.toSparkLine = this.toSparkLine.bind(this);
+    this.sparkLine = this.sparkLine.bind(this);
   }
 
   toSparkLine(children, params) {
-    let header
+    let header;
 
     return React.Children.map(children, child => {
       if (!React.isValidElement(child)) return child
@@ -32,17 +35,16 @@ class SparkLineTable extends React.Component {
 
   sparkLine(element, header) {
     const dataAttr = element.props['data-sparkline'].split('; ')
-
     const data = dataAttr[0].split(', ').map(Number)
+    console.log({ a: this.props })
+    const headerData = header.split(", ");
     const options = {
       series: [{
         data,
         pointStart: 1
       }],
       tooltip: {
-        // headerFormat: `<span style="font-sze:10px">${header}, Q{point.x}: </span><br/>`,
-        headerFormat: ``,
-        pointFormat: '<b>{point.y}.000</b> USD'
+        formatter: this.props.tooltipFormatter
       },
       chart: {
         type: dataAttr[1] || 'area'

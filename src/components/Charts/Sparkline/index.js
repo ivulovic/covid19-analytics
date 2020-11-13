@@ -4,11 +4,12 @@ import './index.css';
 
 // Source: https://codesandbox.io/s/8no9wgg2?file=/index.html:0-213
 
-const SparklineChart = () =>
-  <SparkLineTable>
+const SparklineChart = ({ data, labels, tooltipFormatter }) =>
+  <SparkLineTable tooltipFormatter={tooltipFormatter}>
     <tbody id="tbody-sparkline">
       <tr>
-        <td data-sparkline="71, 78, 39, 66, 22, 33, 44, 66, 76, 77, 99, 100, -100, -50, -20, -10, -6, -3, 0, 10, 50, 60, 120" />
+        <th style={{ display: 'none' }}>{labels ? labels.join(", ") : ''}</th>
+        <td data-sparkline={data} />
         {/* <td data-sparkline="3, 26, -41, -30 ; column" /> */}
       </tr>
     </tbody>

@@ -1,7 +1,7 @@
 import "./index.css";
 import { formatNumber } from '../../../utils/number.utils';
 import SparklineChart from "../../Charts/Sparkline";
-export default function MiniChartCard({ title, value, growth }) {
+export default function MiniChartCard({ title, value, growth, labels, chartData, tooltipFormatter }) {
   return <div className="mini-chart-card">
     <h3 className="title">{title}</h3>
     <div className="value-row">
@@ -12,7 +12,7 @@ export default function MiniChartCard({ title, value, growth }) {
       </p>}
     </div>
     <div>
-      <SparklineChart />
+      <SparklineChart labels={labels} data={chartData} tooltipFormatter={tooltipFormatter} />
     </div>
   </div>
 }

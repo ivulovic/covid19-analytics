@@ -8,8 +8,7 @@ const defaultOptions = {
     borderWidth: 0,
     type: 'area',
     margin: [0, 0, 0, 0],
-    // width: 100,
-    height: 50,
+    height: 75,
     style: {
       overflow: 'visible'
     },
@@ -56,9 +55,10 @@ const defaultOptions = {
     padding: 8,
     borderColor: 'silver',
     borderRadius: 3,
-    positioner: function (w, h, point) {
-      return { x: point.plotX - w / 2, y: point.plotY - h };
-    }
+    outside: true,
+    // positioner: function (w, h, point) {
+    //   return { x: point.plotX - w / 2, y: point.plotY - h };
+    // }
   },
   plotOptions: {
     series: {
