@@ -1,5 +1,4 @@
 import React from 'react'
-import { formatNumber } from '../../../utils/number.utils'
 import SparkLine from './Sparkline'
 
 

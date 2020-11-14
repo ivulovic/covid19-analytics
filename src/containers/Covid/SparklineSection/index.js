@@ -4,6 +4,7 @@ import MiniChartCard from "../../../components/Cards/MiniChartCard";
 import PageTitle from "../../../components/PageTitle";
 import { months, renderDate } from '../../../utils/date.utils';
 import { formatNumber } from '../../../utils/number.utils';
+import StackedBarSection from '../StackedBarSection';
 
 export default function SparklineSection() {
   const [loading, setLoading] = useState(true);
@@ -188,5 +189,6 @@ export default function SparklineSection() {
       // growth={{ value: -16, text: " критично" }}
       />
     </div>
+    <StackedBarSection data={chartData.bar} labels={chartData.labels} />
   </div>
 }
