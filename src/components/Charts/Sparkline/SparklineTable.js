@@ -41,7 +41,8 @@ class SparkLineTable extends React.Component {
     const options = {
       series: [{
         data,
-        pointStart: 1
+        pointStart: 1,
+        ...this.props.seriesOptions,
       }],
       tooltip: {
         formatter: this.props.tooltipFormatter
