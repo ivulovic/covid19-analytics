@@ -211,8 +211,11 @@ export default function SparklineSection() {
       // growth={{ value: -16, text: " критично" }}
       />
     </div>
+    <h3 className="section-title">ПРИКАЗ ПРОМЕНЕ СТАЊА ТОКОМ ВРЕМЕНА</h3>
+    <LineChartSection data={chartData.line} labels={chartData.labels} />
+    <h3 className="section-title">ПРИКАЗ ПРОМЕНЕ СТАЊА ЗА СВАКИ МЕСЕЦ ПОЈЕДИНАЧНО</h3>
     <StackedBarSection data={chartData.bar} labels={chartData.labels} />
-    <h3 className="section-title">Дневни приказ промене стања за месец {months[new Date(dailyDate).getMonth()]} {new Date(dailyDate).getFullYear()}</h3>
+    <h3 className="section-title">ДНЕВНИ ПРИКАЗ ПРОМЕНЕ СТАЊА ЗА МЕСЕЦ {months[new Date(dailyDate).getMonth()]} {new Date(dailyDate).getFullYear()}</h3>
     <LineChartSection data={dailyData.daily.line} labels={dailyData.daily.labels} />
     <div className="flex justify-space-between pagination">
       <button className="button" style={{ marginRight: '10px' }} onClick={decreaseDailyMonth}>Претходни месец</button>
