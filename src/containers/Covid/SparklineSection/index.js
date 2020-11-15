@@ -4,11 +4,14 @@ import MiniChartCard from "../../../components/Cards/MiniChartCard";
 import PageTitle from "../../../components/PageTitle";
 import { months, renderDate } from '../../../utils/date.utils';
 import { formatNumber } from '../../../utils/number.utils';
+import LineChartSection from '../LineChartSection';
 import StackedBarSection from '../StackedBarSection';
 
 export default function SparklineSection() {
   const [loading, setLoading] = useState(true);
   const [rawData, setRawData] = useState();
+  const [chartData, setChartData] = useState({});
+  const [dailyData, setDailyData] = useState({});
   const [dailyDate, setDailyDate] = useState(new Date().toISOString().split('T')[0]);
   useEffect(() => {
     // https://github.com/igr/c19json
@@ -24,8 +27,10 @@ export default function SparklineSection() {
       setupDailyData(dailyDate, rawData);
     }
   }, [dailyDate, rawData])
-  const [chartData, setChartData] = useState({});
-  const [dailyData, setDailyData] = useState({});
+
+  const getDateString = (d) => {
+    return new Date(d).toISOString().split('T')[0];
+  }
   const setupDailyData = (inputDate, d) => {
     const currentMonth = new Date(inputDate).getMonth();
     const labels = [];
@@ -136,7 +141,6 @@ export default function SparklineSection() {
   }
   const sum = (accumulator, currentValue) => accumulator + currentValue;
   if (loading) return null;
-  console.log({ d: dailyData.daily })
   const confirmedSumTooltip = function () {
     return `
       <b>${months[this.x - 1]}</b> <br/>
@@ -155,7 +159,25 @@ export default function SparklineSection() {
       Преминулих: ${formatNumber(this.y)}
     `;
   }
+  const decreaseDailyMonth = () => {
+    const newDateTs = new Date(dailyDate).setMonth(new Date(dailyDate).getMonth() - 1);
+    if (new Date(newDateTs) < new Date(firstDate).getTime()) {
+      return;
+    }
+    const newDate = getDateString(newDateTs);
+    setDailyDate(newDate);
+  }
+  const increaseDailyMonth = () => {
+    const newDateTs = new Date(dailyDate).setMonth(new Date(dailyDate).getMonth() + 1);
+    if (new Date(newDateTs) > new Date().getTime()) {
+      return;
+    }
+    const newDate = getDateString(newDateTs);
+    setDailyDate(newDate);
+  }
 
+  if (loading) return null;
+  const firstDate = rawData.serbia[0].date;
   return <div>
     <PageTitle title="Аналитика вируса корона у Републици Србији" />
     <div className="cards-container">
@@ -190,5 +212,11 @@ export default function SparklineSection() {
       />
     </div>
     <StackedBarSection data={chartData.bar} labels={chartData.labels} />
+    <h3 className="section-title">Дневни приказ промене стања за месец {months[new Date(dailyDate).getMonth()]} {new Date(dailyDate).getFullYear()}</h3>
+    <LineChartSection data={dailyData.daily.line} labels={dailyData.daily.labels} />
+    <div className="flex justify-space-between pagination">
+      <button className="button" style={{ marginRight: '10px' }} onClick={decreaseDailyMonth}>Претходни месец</button>
+      <button className="button" onClick={increaseDailyMonth}>Наредни месец</button>
+    </div>
   </div>
 }
