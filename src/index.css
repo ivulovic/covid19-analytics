@@ -39,6 +39,9 @@
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
 }
+.number{
+  font-family: 'Rubik', sans-serif!important;
+}
 body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,9 +49,6 @@ body {
 }
 main{
   padding: 15px;
-}
-.number{
-  font-family: 'Rubik', sans-serif;
 }
 .number.negative{
   color: var(--danger);

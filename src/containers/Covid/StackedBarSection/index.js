@@ -58,7 +58,7 @@ export default function StackedBarSection({ data, labels }) {
         data: data.deaths,
         color: 'var(--danger)'
       },
-    ].reverse()
+    ]
   };
 
   return <div>

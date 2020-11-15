@@ -15,13 +15,9 @@ export default function LineChartSection({ data, labels }) {
       categories: labels,
     },
     yAxis: {
-      min: 0,
       title: {
         text: ''
       },
-      stackLabels: {
-        enabled: false,
-      }
     },
     tooltip: {
       shared: true,
@@ -36,11 +32,6 @@ export default function LineChartSection({ data, labels }) {
     },
     credits: {
       enabled: false,
-    },
-    plotOptions: {
-      column: {
-        stacking: 'normal',
-      }
     },
     series: [
       {
@@ -58,7 +49,7 @@ export default function LineChartSection({ data, labels }) {
         data: data.deaths,
         color: 'var(--danger)'
       },
-    ].reverse()
+    ]
   };
 
   return <div>
