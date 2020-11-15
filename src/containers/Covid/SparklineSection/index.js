@@ -75,63 +75,53 @@ export default function SparklineSection() {
     })
     setLoading(false)
   }
-  const setupData = (period, d) => {
+  const setupData = (period, dataToMap) => {
     switch (period) {
       case 'monthly': {
         const labels = [];
         const dataSorted = {
           line: {},
-          bar: {}
-        };
-        d.serbia.map(({ date, confirmed, recovered, deaths }) => {
-          const monthOrdinaryNumber = new Date(date).getMonth();
-          const month = months[monthOrdinaryNumber];
-          if (!labels.includes(month)) {
-            labels.push(month);
-            dataSorted['line'][monthOrdinaryNumber] = {
-              confirmed: 0,
-              recovered: 0,
-              deaths: 0,
-            }
-            dataSorted['bar'][monthOrdinaryNumber] = {
-              confirmed: 0,
-              recovered: 0,
-              deaths: 0,
-            }
-          }
-          const hasPreviousMonth = dataSorted['bar'][monthOrdinaryNumber - 1] !== undefined;
-          if (confirmed > 0) {
-            dataSorted['line'][monthOrdinaryNumber].confirmed = parseInt(confirmed);
-            dataSorted['bar'][monthOrdinaryNumber].confirmed = hasPreviousMonth ? parseInt(confirmed) - dataSorted['line'][monthOrdinaryNumber - 1].confirmed : parseInt(confirmed);
-          }
-          if (recovered > 0) {
-            dataSorted['line'][monthOrdinaryNumber].recovered = parseInt(recovered);
-            dataSorted['bar'][monthOrdinaryNumber].recovered = hasPreviousMonth ? parseInt(recovered) - dataSorted['line'][monthOrdinaryNumber - 1].recovered : parseInt(recovered);
-          }
-          if (deaths > 0) {
-            dataSorted['line'][monthOrdinaryNumber].deaths = parseInt(deaths);
-            dataSorted['bar'][monthOrdinaryNumber].deaths = hasPreviousMonth ? parseInt(deaths) - dataSorted['line'][monthOrdinaryNumber - 1].deaths : parseInt(deaths);
-          }
-        })
-        function extractData(list) {
-          const lists = {
+          bar: {},
+          l: {
             confirmed: [],
             recovered: [],
             deaths: [],
-          };
-          Object.values(list).map(({ confirmed, recovered, deaths }) => {
-            lists.recovered.push(recovered);
-            lists.confirmed.push(confirmed);
-            lists.deaths.push(deaths);
-          })
-          return lists;
-        }
-        const lineData = extractData(dataSorted.line);
-        const barData = extractData(dataSorted.bar);
+          },
+          b: {
+            confirmed: [],
+            recovered: [],
+            deaths: [],
+          }
+        };
+        let counter = 0;
+        dataToMap.serbia.forEach(({ date, confirmed, recovered, deaths }, i) => {
+          const d = new Date(date);
+          const isLastRecord = dataToMap.serbia.length - 1 === i;
+          const y = d.getFullYear();
+          const m = d.getMonth() + 1;
+          const day = d.getDate();
+          const lastDay = isLastRecord ? day : new Date(y, m, 0).getDate();
+          if (day !== lastDay) {
+            return;
+          }
+          const ts = Date.UTC(y, m - 1, 1)
+          if (!labels.includes(ts)) {
+            labels.push(ts);
+            const hasPreviousMonth = counter > 0;
+            dataSorted['l'].confirmed.push([ts, parseInt(confirmed)]);
+            // dataSorted['l'].recovered.push([ts, parseInt(recovered)]);
+            dataSorted['l'].deaths.push([ts, parseInt(deaths)]);
+
+            dataSorted['b'].confirmed.push([ts, hasPreviousMonth ? parseInt(confirmed) - dataSorted['l'].confirmed[counter - 1][1] : parseInt(confirmed)]);
+            // dataSorted['b'].recovered.push([ts, hasPreviousMonth ? parseInt(recovered) - dataSorted['l'].recovered[counter - 1][1] : parseInt(recovered)]);
+            dataSorted['b'].deaths.push([ts, hasPreviousMonth ? parseInt(deaths) - dataSorted['l'].deaths[counter - 1][1] : parseInt(deaths)]);
+            counter += 1;
+          }
+        })
         setChartData({
           labels,
-          line: lineData,
-          bar: barData,
+          line: dataSorted.l,
+          bar: dataSorted.b,
         })
         return;
       }
@@ -186,8 +176,8 @@ export default function SparklineSection() {
         seriesOptions={{
           color: '#00b8d4'
         }}
-        chartData={chartData.line.confirmed.join(', ')}
-        value={chartData.line.confirmed[chartData.line.confirmed.length - 1]}
+        chartData={chartData.line.confirmed.map(([ts, value]) => value).join(', ')}
+        value={chartData.line.confirmed[chartData.line.confirmed.length - 1][1]}
         tooltipFormatter={confirmedSumTooltip}
       // growth={{ value: -16, text: " критично" }}
       />

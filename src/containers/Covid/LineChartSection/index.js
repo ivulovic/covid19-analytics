@@ -12,7 +12,8 @@ export default function LineChartSection({ data, labels }) {
       text: ''
     },
     xAxis: {
-      categories: labels,
+      // categories: labels,
+      type: 'datetime'
     },
     yAxis: {
       title: {
@@ -34,11 +35,11 @@ export default function LineChartSection({ data, labels }) {
       enabled: false,
     },
     series: [
-      {
-        name: 'Опорављени',
-        data: data.recovered,
-        color: 'var(--success)'
-      },
+      // {
+      //   name: 'Опорављени',
+      //   data: data.recovered,
+      //   color: 'var(--success)'
+      // },
       {
         name: 'Потврђени',
         data: data.confirmed,

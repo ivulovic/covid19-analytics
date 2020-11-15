@@ -12,7 +12,9 @@ export default function StackedBarSection({ data, labels }) {
       text: ''
     },
     xAxis: {
-      categories: labels,
+      // categories: labels,
+      type: 'datetime'
+
     },
     yAxis: {
       min: 0,
@@ -43,11 +45,11 @@ export default function StackedBarSection({ data, labels }) {
       }
     },
     series: [
-      {
-        name: 'Опорављени',
-        data: data.recovered,
-        color: 'var(--success)'
-      },
+      // {
+      //   name: 'Опорављени',
+      //   data: data.recovered,
+      //   color: 'var(--success)'
+      // },
       {
         name: 'Потврђени',
         data: data.confirmed,
