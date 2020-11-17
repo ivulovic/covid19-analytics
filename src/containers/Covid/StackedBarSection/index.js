@@ -4,7 +4,7 @@ import { renderTimestampDate } from "../../../utils/date.utils";
 import { formatNumber } from '../../../utils/number.utils';
 
 
-export default function StackedBarSection({ data, labels }) {
+export default function StackedBarSection({ data }) {
   const options = {
     chart: {
       type: 'column'
@@ -13,7 +13,6 @@ export default function StackedBarSection({ data, labels }) {
       text: ''
     },
     xAxis: {
-      // categories: labels,
       type: 'datetime',
       labels: {
         formatter: function () {

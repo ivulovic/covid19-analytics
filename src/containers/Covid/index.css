@@ -7,3 +7,16 @@
 svg path{
   outline: none;
 }
+.pagination button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 6px 12px;
+  color: var(--text-primary);
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+.pagination button:hover{
+  background-color: var(--light);
+}

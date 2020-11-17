@@ -42,7 +42,7 @@
 .number{
   font-family: 'Rubik', sans-serif!important;
 }
-body {
+body, button {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

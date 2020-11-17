@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SectionTitle from "../../../../components/SectionTitle";
 import { months } from "../../../../utils/date.utils";
 import LineChartSection from "../../LineChartSection";
 
@@ -35,11 +36,12 @@ export default function DailyCases({ data: { daily: initialDailyData, raw }, ini
     setDailyDate(newDate);
   }
 
+  const dailyDateObj = new Date(dailyDate);
   return <div>
-    <h3 className="section-title">ДНЕВНИ ПРИКАЗ ПРОМЕНЕ СТАЊА ЗА МЕСЕЦ {months[new Date(dailyDate).getMonth()]} {new Date(dailyDate).getFullYear()}</h3>
+    <SectionTitle title={`Дневни приказ промене стања за месец ${months[dailyDateObj.getMonth()]} ${dailyDateObj.getFullYear()}`} />
     <LineChartSection data={daily.line} type='daily' />
     <div className="flex justify-space-between pagination">
-      <button className="button" style={{ marginRight: '10px' }} onClick={decreaseDailyMonth}>Претходни месец</button>
+      <button className="button" onClick={decreaseDailyMonth}>Претходни месец</button>
       <button className="button" onClick={increaseDailyMonth}>Наредни месец</button>
     </div>
   </div>

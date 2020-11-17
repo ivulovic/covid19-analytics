@@ -7,7 +7,10 @@ import { formatNumber } from '../../../utils/number.utils';
 export default function LineChartSection({ data, type }) {
   const options = {
     chart: {
-      type: 'line'
+      type: 'line',
+      style: {
+        padding: '0px',
+      }
     },
     title: {
       text: ''

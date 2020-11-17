@@ -1,11 +1,14 @@
 import MiniChartCard from "../../../../components/Cards/MiniChartCard";
-import { months, renderDate } from "../../../../utils/date.utils";
+import { months, renderDate, renderTimestampDate } from "../../../../utils/date.utils";
 import { formatNumber } from "../../../../utils/number.utils";
 
 export default function Sparklines({ data: { monthly, daily } }) {
   const confirmedSumTooltip = function () {
+    const labels = monthly.labels;
+    const ts = labels[this.x - 1];
+    const label = renderTimestampDate(ts, { showDay: false });
     return `
-      <b>${months[this.x - 1]}</b> <br/>
+      <b>${label}</b> <br/>
       Укупно регистрованих: ${formatNumber(this.y)}
     `;
   }
