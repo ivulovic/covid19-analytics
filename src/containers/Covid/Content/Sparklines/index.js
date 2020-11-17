@@ -34,22 +34,22 @@ export default function Sparklines({ data: { monthly, daily } }) {
     // growth={{ value: -16, text: " критично" }}
     />
     <MiniChartCard title="БРОЈ ПОТВРЂЕНИХ У ПОСЛЕДЊА 24 ЧАСА"
-      chartData={daily.line.confirmed.join(', ')}
+      chartData={daily.line.confirmed.map(([ts, value]) => value).join(', ')}
       seriesOptions={{
         color: '#00b8d4'
       }}
       tooltipFormatter={confirmedTooltip}
-      value={daily.line.confirmed[daily.line.confirmed.length - 1]}
+      value={daily.line.confirmed[daily.line.confirmed.length - 1][1]}
     // growth={{ value: -16, text: " критично" }} 
     />
 
     <MiniChartCard title="БРОЈ ПРЕМИНУЛИХ У ПОСЛЕДЊА 24 ЧАСА"
-      chartData={daily.line.deaths.join(', ')}
+      chartData={daily.line.deaths.map(([ts, value]) => value).join(', ')}
       seriesOptions={{
         color: '#00b8d4'
       }}
       tooltipFormatter={deathsTooltip}
-      value={daily.line.deaths[daily.line.deaths.length - 1]}
+      value={daily.line.deaths[daily.line.deaths.length - 1][1]}
     // growth={{ value: -16, text: " критично" }}
     />
   </div>

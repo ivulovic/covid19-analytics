@@ -81,24 +81,30 @@ export default function DataProvider(props) {
     const lastDayInPreviousMonthData = d.serbia.find(({ date }) => date === lastDayInPreviousMonth) || { confirmed: 0, recovered: 0, deaths: 0 };
     monthData.map(({ date, confirmed, recovered, deaths }, i) => {
       labels.push(date);
+      const d = new Date(date);
+      const y = d.getFullYear();
+      const m = d.getMonth() + 1;
+      const day = d.getDate();
+      const ts = Date.UTC(y, m - 1, day)
+
       const hasPreviousDay = monthData[i - 1] !== undefined;
 
       if (confirmed > 0) {
-        dataSorted['line'].confirmed.push(hasPreviousDay ? parseInt(confirmed) - monthData[i - 1].confirmed : parseInt(confirmed) - lastDayInPreviousMonthData.confirmed);
+        dataSorted['line'].confirmed.push([ts, hasPreviousDay ? parseInt(confirmed) - monthData[i - 1].confirmed : parseInt(confirmed) - lastDayInPreviousMonthData.confirmed]);
       } else {
-        dataSorted['line'].confirmed.push(0);
+        dataSorted['line'].confirmed.push([ts, 0]);
       }
       if (recovered > 0) {
-        dataSorted['line'].recovered.push(hasPreviousDay ? parseInt(recovered) - monthData[i - 1].recovered : parseInt(recovered) - lastDayInPreviousMonthData.recovered);
+        dataSorted['line'].recovered.push([ts, hasPreviousDay ? parseInt(recovered) - monthData[i - 1].recovered : parseInt(recovered) - lastDayInPreviousMonthData.recovered]);
       } else {
-        dataSorted['line'].recovered.push(0);
+        dataSorted['line'].recovered.push([ts, 0]);
       }
       if (deaths > 0) {
         const value = hasPreviousDay ? parseInt(deaths) - monthData[i - 1].deaths : parseInt(deaths) - lastDayInPreviousMonthData.deaths
         // dataSorted['line'].deaths.push(value < 0 ? deaths : value);
-        dataSorted['line'].deaths.push(value);
+        dataSorted['line'].deaths.push([ts, value]);
       } else {
-        dataSorted['line'].deaths.push(deaths)
+        dataSorted['line'].deaths.push([ts, deaths])
       }
     })
     dataSorted.labels = labels;

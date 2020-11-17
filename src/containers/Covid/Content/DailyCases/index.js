@@ -37,7 +37,7 @@ export default function DailyCases({ data: { daily: initialDailyData, raw }, ini
 
   return <div>
     <h3 className="section-title">ДНЕВНИ ПРИКАЗ ПРОМЕНЕ СТАЊА ЗА МЕСЕЦ {months[new Date(dailyDate).getMonth()]} {new Date(dailyDate).getFullYear()}</h3>
-    <LineChartSection data={daily.line} labels={daily.labels} />
+    <LineChartSection data={daily.line} type='daily' />
     <div className="flex justify-space-between pagination">
       <button className="button" style={{ marginRight: '10px' }} onClick={decreaseDailyMonth}>Претходни месец</button>
       <button className="button" onClick={increaseDailyMonth}>Наредни месец</button>
