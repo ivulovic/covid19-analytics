@@ -23,6 +23,8 @@ export default function LineChartSection({ data, labels }) {
     tooltip: {
       shared: true,
       useHTML: true,
+      // headerFormat: '{point.x}',
+      xDateFormat: '%d.%m.%Y',
       pointFormatter: function () {
         const point = this;
         const series = point.series;
