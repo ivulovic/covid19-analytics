@@ -9,10 +9,11 @@ export const renderDate = (date) => {
 
 const renderTimestampDateOptions = {
   showDay: true,
+  showFullMonth: false,
 }
 export const renderTimestampDate = (date, options = renderTimestampDateOptions) => {
-  const { showDay } = options;
-  const monthObj = showDay ? monthsLowercaseShort : months;
+  const { showDay, showFullMonth } = options;
+  const monthObj = showFullMonth ? monthsLowercase : showDay ? monthsLowercaseShort : months;
   const dateObj = new Date(date);
   const y = dateObj.getFullYear();
   const m = dateObj.getMonth() + 1;

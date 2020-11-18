@@ -14,6 +14,8 @@ export default function StackedBarSection({ data }) {
     },
     xAxis: {
       type: 'datetime',
+      gridLineWidth: 0,
+      lineWidth: 0,
       labels: {
         formatter: function () {
           return renderTimestampDate(this.value, { showDay: false })
@@ -25,6 +27,8 @@ export default function StackedBarSection({ data }) {
       title: {
         text: ''
       },
+      gridLineWidth: 0,
+      lineWidth: 0,
       labels: {
         formatter: function () {
           return formatNumber(this.value)
@@ -60,6 +64,9 @@ export default function StackedBarSection({ data }) {
     plotOptions: {
       column: {
         stacking: 'normal',
+      },
+      series: {
+        borderColor: 'transparent',
       }
     },
     series: [
@@ -71,7 +78,7 @@ export default function StackedBarSection({ data }) {
       {
         name: 'Потврђени',
         data: data.confirmed,
-        color: 'var(--warning)'
+        color: 'var(--indigo)'
       },
       {
         name: 'Преминули',

@@ -39,7 +39,7 @@ export default function Sparklines({ data: { monthly, daily } }) {
     <MiniChartCard title="БРОЈ ПОТВРЂЕНИХ У ПОСЛЕДЊА 24 ЧАСА"
       chartData={daily.line.confirmed.map(([ts, value]) => value).join(', ')}
       seriesOptions={{
-        color: '#00b8d4'
+        color: '#6f42c1'
       }}
       tooltipFormatter={confirmedTooltip}
       value={daily.line.confirmed[daily.line.confirmed.length - 1][1]}
@@ -49,7 +49,7 @@ export default function Sparklines({ data: { monthly, daily } }) {
     <MiniChartCard title="БРОЈ ПРЕМИНУЛИХ У ПОСЛЕДЊА 24 ЧАСА"
       chartData={daily.line.deaths.map(([ts, value]) => value).join(', ')}
       seriesOptions={{
-        color: '#00b8d4'
+        color: '#dc3545'
       }}
       tooltipFormatter={deathsTooltip}
       value={daily.line.deaths[daily.line.deaths.length - 1][1]}

@@ -31,7 +31,10 @@ const defaultOptions = {
     lineColor: 'white',
     startOnTick: false,
     endOnTick: false,
-    tickPositions: []
+    tickPositions: [],
+
+    gridLineWidth: 0,
+    lineWidth: 0,
   },
   yAxis: {
     endOnTick: false,
@@ -42,7 +45,10 @@ const defaultOptions = {
     title: {
       text: null
     },
-    tickPositions: [0]
+    tickPositions: [0],
+
+    gridLineWidth: 0,
+    lineWidth: 0,
   },
   legend: {
     enabled: false

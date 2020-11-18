@@ -18,9 +18,11 @@ export default function LineChartSection({ data, type }) {
     xAxis: {
       // categories: labels,
       type: 'datetime',
+      gridLineWidth: 0,
+      lineWidth: 0,
       labels: {
         formatter: function () {
-          return renderTimestampDate(this.value, { showDay: { showDay: type === 'daily' } })
+          return renderTimestampDate(this.value, { showDay: type === 'daily' })
         }
       }
     },
@@ -28,6 +30,8 @@ export default function LineChartSection({ data, type }) {
       title: {
         text: ''
       },
+      gridLineWidth: 0,
+      minorGridLineWidth: 0,
       labels: {
         formatter: function () {
           return formatNumber(this.value)
@@ -41,7 +45,7 @@ export default function LineChartSection({ data, type }) {
         // The first returned item is the header, subsequent items are the
         // points
         const self = this;
-        return ['<b>' + renderTimestampDate(this.x, { showDay: type === 'daily' }) + '</b><br/>'].concat(
+        return ['<b>' + renderTimestampDate(this.x, { showDay: type === 'daily', showFullMonth: true }) + '</b><br/>'].concat(
           this.points ?
             this.points.map(function (point, i) {
               const legendSymbol = "<svg width='16' height='16'>" + point.series.legendSymbol.element.outerHTML + "</svg>";
@@ -66,7 +70,7 @@ export default function LineChartSection({ data, type }) {
       {
         name: 'Потврђени',
         data: data.confirmed,
-        color: 'var(--warning)'
+        color: 'var(--indigo)'
       },
       {
         name: 'Преминули',
