@@ -5,17 +5,20 @@ import CasesByMonth from "./CasesByMonth";
 import CasesOvertime from "./CasesOvertime";
 import DailyCases from "./DailyCases";
 import Sparklines from "./Sparklines";
+import TodayDataSection from "./TodayDataSection";
 
 export default function Content() {
-  const { monthly, daily, raw, initialDate, onPeriodChange } = useContext(DataContext);
+  const { monthly, daily, cards, initialDate } = useContext(DataContext);
   return <div>
     <PageTitle title="Аналитика вируса корона у Републици Србији" />
     <Sparklines data={{
       monthly,
-      daily
+      daily,
+      cards,
     }} />
+    <TodayDataSection />
     <CasesOvertime data={{ monthly }} />
     <CasesByMonth data={{ monthly }} />
-    <DailyCases data={{ daily, raw }} initialDate={initialDate} onPeriodChange={onPeriodChange} />
+    <DailyCases data={{ daily }} initialDate={initialDate} />
   </div>
 }

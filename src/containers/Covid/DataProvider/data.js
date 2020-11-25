@@ -1,0 +1,71 @@
+export const cardsMapper = {
+  "BROJ_TESTIRANIH_LICA_ZA_DATI_DATUM": 'Број тестираних лица',
+  "BROJ_POZITIVNIH_LICA_ZA_DATI_DATUM": 'Број позитивних лица',
+  "BROJ_PREMINULIH_LICA_ZA_DATI_DATUM": 'Број преминулих',
+  "BROJ_HOSPITALIZOVANIH_LICA_ZA_DATI_DATUM": 'Број хоспитализованих лица',
+  "BROJ_LICA_NA_RESPIRATORU_ZA_DATI_DATUM": 'Број лица на респиратору',
+
+  "UKUPAN_BROJ_TESTIRANIH_LICA_OD_POČETKA_PANDEMIJE": 'Укупан број тестираних лица',
+  "UKUPAN_BROJ_POZITIVNIH_LICA_OD_POČETKA_PANDEMIJE": 'Укупан број позитивних лица',
+  "UKUPAN_BROJ_PREMINULIH_LICA_OD_POČETKA_PANDEMIJE": 'Укупан број преминулих лица',
+
+
+  "PROCENAT_ZARAŽENIH_LICA_ U_ODNOSU_NA_BROJ_TESTIRANIH_LICA_ZA_DATI DATUM": 'Проценат заражених у односу на број тестираних',
+  "PROCENAT_ZARAŽENIH_LICA_OD_POČETKA_PANDEMIJE_U_ODNOSU_NA_UKUPAN_BROJ_TESTIRANIH_LICA": 'Проценат заражених у односу на укупан број тестираних',
+  "PROCENAT_HOSPITALIZOVANIH_LICA_U ODNOSU_NA_UKUPAN_BROJ_ZARAŽENIH_ZA_DATI_DATUM": 'Проценат хоспитализованих лица у односу на укупан број заражених',
+  "PROCENAT_LICA_NA_RESPIRATORU_U_ODNOSU_NA_UKUPAN_BROJ_HOSPITALIZOVANIH": 'Проценат лица на респиратору у односу на укупан број хоспитализованих',
+
+  // data is null
+  "BROJ_PREMINULIH_MUŠKARACA_ZA_DATI_DATUM": 'Број преминулих мушкараца',
+  "BROJ_PREMINULIH_ŽENA_ZA_DATI_DATUM": 'Број преминулих жена',
+  "PROSEK_GODINA_LICA_PREMINULIH_ZA_DATI_DATUM": 'Просек година лица',
+  "UKUPAN_BROJ_IZLEČENIH_LICA_OD_POČETKA_PANDEMIJE": 'Укупан број излечених',
+  "PROCENAT_IZLEČENIH_LICA_U_ODNOSU_NA_UKUPAN_BROJ_ZARAŽENIH_OD_POČETKA_PANDEMIJE": 'Проценат излечених у односу на укупан број заражених',
+}
+
+export const cardsOrder = [
+  'UKUPAN_BROJ_POZITIVNIH_LICA_OD_POČETKA_PANDEMIJE',
+  'BROJ_POZITIVNIH_LICA_ZA_DATI_DATUM',
+  'BROJ_PREMINULIH_LICA_ZA_DATI_DATUM',
+  'BROJ_TESTIRANIH_LICA_ZA_DATI_DATUM',
+  'BROJ_HOSPITALIZOVANIH_LICA_ZA_DATI_DATUM',
+  'BROJ_LICA_NA_RESPIRATORU_ZA_DATI_DATUM',
+]
+
+// export const keysMapper = {
+//   respiratorForDate: 'BROJ_LICA_NA_RESPIRATORU_ZA_DATI_DATUM',
+//   hospitalizedForDate: 'BROJ_HOSPITALIZOVANIH_LICA_ZA_DATI_DATUM',
+//   positiveForDate: 'BROJ_POZITIVNIH_LICA_ZA_DATI_DATUM',
+//   testedForDate: 'BROJ_TESTIRANIH_LICA_ZA_DATI_DATUM',
+//   deathsForDate: 'BROJ_PREMINULIH_LICA_ZA_DATI_DATUM',
+//   onRespiratorForDate: 'BROJ_LICA_NA_RESPIRATORU_ZA_DATI_DATUM',
+
+//   percentOfInfectedComparedWithTestedForDate: 'PROCENAT_ZARAŽENIH_LICA_ U_ODNOSU_NA_BROJ_TESTIRANIH_LICA_ZA_DATI DATUM',
+//   percentOfInfectedComparedWithTestedSum: 'PROCENAT_ZARAŽENIH_LICA_OD_POČETKA_PANDEMIJE_U_ODNOSU_NA_UKUPAN_BROJ_TESTIRANIH_LICA',
+//   percentOfHospitalizedComparedWithInfectedForDate: 'PROCENAT_HOSPITALIZOVANIH_LICA_U ODNOSU_NA_UKUPAN_BROJ_ZARAŽENIH_ZA_DATI_DATUM',
+//   percentOnRespiratorComparedWithHospitalizedSum: 'PROCENAT_LICA_NA_RESPIRATORU_U_ODNOSU_NA_UKUPAN_BROJ_HOSPITALIZOVANIH',
+
+//   sumDeaths: 'UKUPAN_BROJ_PREMINULIH_LICA_OD_POČETKA_PANDEMIJE',
+//   sumTested: 'UKUPAN_BROJ_TESTIRANIH_LICA_OD_POČETKA_PANDEMIJE',
+//   sumPositive: 'UKUPAN_BROJ_POZITIVNIH_LICA_OD_POČETKA_PANDEMIJE',
+
+// };
+
+export const keysMapper = {
+  'BROJ_LICA_NA_RESPIRATORU_ZA_DATI_DATUM': 'respiratorForDate',
+  'BROJ_HOSPITALIZOVANIH_LICA_ZA_DATI_DATUM': 'hospitalizedForDate',
+  'BROJ_POZITIVNIH_LICA_ZA_DATI_DATUM': 'positiveForDate',
+  'BROJ_TESTIRANIH_LICA_ZA_DATI_DATUM': 'testedForDate',
+  'BROJ_PREMINULIH_LICA_ZA_DATI_DATUM': 'deathsForDate',
+  'BROJ_LICA_NA_RESPIRATORU_ZA_DATI_DATUM': 'onRespiratorForDate',
+
+  'PROCENAT_ZARAŽENIH_LICA_ U_ODNOSU_NA_BROJ_TESTIRANIH_LICA_ZA_DATI DATUM': 'percentOfInfectedComparedWithTestedForDate',
+  'PROCENAT_ZARAŽENIH_LICA_OD_POČETKA_PANDEMIJE_U_ODNOSU_NA_UKUPAN_BROJ_TESTIRANIH_LICA': 'percentOfInfectedComparedWithTestedSum',
+  'PROCENAT_HOSPITALIZOVANIH_LICA_U ODNOSU_NA_UKUPAN_BROJ_ZARAŽENIH_ZA_DATI_DATUM': 'percentOfHospitalizedComparedWithInfectedForDate',
+  'PROCENAT_LICA_NA_RESPIRATORU_U_ODNOSU_NA_UKUPAN_BROJ_HOSPITALIZOVANIH': 'percentOnRespiratorComparedWithHospitalizedSum',
+
+  'UKUPAN_BROJ_PREMINULIH_LICA_OD_POČETKA_PANDEMIJE': 'sumDeaths',
+  'UKUPAN_BROJ_TESTIRANIH_LICA_OD_POČETKA_PANDEMIJE': 'sumTested',
+  'UKUPAN_BROJ_POZITIVNIH_LICA_OD_POČETKA_PANDEMIJE': 'sumPositive',
+
+};

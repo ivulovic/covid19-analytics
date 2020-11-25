@@ -1,8 +1,9 @@
 import MiniChartCard from "../../../../components/Cards/MiniChartCard";
-import { months, renderDate, renderTimestampDate } from "../../../../utils/date.utils";
+import { renderDate, renderTimestampDate } from "../../../../utils/date.utils";
 import { formatNumber } from "../../../../utils/number.utils";
+import { cardsMapper } from "../../DataProvider/data";
 
-export default function Sparklines({ data: { monthly, daily } }) {
+export default function Sparklines({ data: { monthly, daily, cards } }) {
   const confirmedSumTooltip = function () {
     const labels = monthly.labels;
     const ts = labels[this.x - 1];
@@ -24,9 +25,22 @@ export default function Sparklines({ data: { monthly, daily } }) {
       Преминулих: ${formatNumber(this.y)}
     `;
   }
-  if (!monthly || !daily) return null;
+  if (!monthly || !daily || !cards) return null;
   return <div className="cards-container">
-    <MiniChartCard title="УКУПАН БРОЈ РЕГИСТРОВАНИХ СЛУЧАЈЕВА"
+    {cards.map(({ description, value }) => {
+      return <MiniChartCard title={cardsMapper[description]}
+        labels={monthly.labels}
+        seriesOptions={{
+          color: '#00b8d4'
+        }}
+        // chartData={monthly.line.confirmed.map(([ts, value]) => value).join(', ')}
+        // value={monthly.line.confirmed[monthly.line.confirmed.length - 1][1]}
+        value={value}
+        tooltipFormatter={confirmedSumTooltip}
+      // growth={{ value: -16, text: " критично" }}
+      />
+    })}
+    {/* <MiniChartCard title="УКУПАН БРОЈ РЕГИСТРОВАНИХ СЛУЧАЈЕВА"
       labels={monthly.labels}
       seriesOptions={{
         color: '#00b8d4'
@@ -54,6 +68,6 @@ export default function Sparklines({ data: { monthly, daily } }) {
       tooltipFormatter={deathsTooltip}
       value={daily.line.deaths[daily.line.deaths.length - 1][1]}
     // growth={{ value: -16, text: " критично" }}
-    />
+    /> */}
   </div>
 }
