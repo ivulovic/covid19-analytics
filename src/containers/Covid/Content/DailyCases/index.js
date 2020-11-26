@@ -3,7 +3,9 @@ import SectionTitle from "../../../../components/SectionTitle";
 import { months } from "../../../../utils/date.utils";
 import LineChartSection from "../../LineChartSection";
 
-export default function DailyCases({ data: { daily: initialDailyData }, initialDate }) {
+export default function DailyCases({ data: { daily: initialDailyData } }) {
+  const initialDate = new Date().toISOString().split('T')[0];
+
   const [dailyDate, setDailyDate] = useState(initialDate);
   const [daily, setDaily] = useState();
 

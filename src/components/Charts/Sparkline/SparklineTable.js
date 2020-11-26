@@ -32,10 +32,9 @@ class SparkLineTable extends React.Component {
     })
   }
 
-  sparkLine(element, header) {
+  sparkLine(element) {
     const dataAttr = element.props['data-sparkline'].split('; ')
     const data = dataAttr[0].split(', ').map(Number)
-    const headerData = header.split(", ");
     const options = {
       series: [{
         data,

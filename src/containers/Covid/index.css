@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 15px;
+  grid-row-gap: 15px;
   margin: 15px 0px;
 }
 svg path{
@@ -19,4 +20,17 @@ svg path{
 }
 .pagination button:hover{
   background-color: var(--light);
+}
+
+@media screen and (max-width: 1024px) {
+  .cards-container{
+    grid-template-columns: 1fr 1fr;
+  
+  }
+}
+@media screen and (max-width: 480px) {
+  .cards-container{
+    grid-template-columns: 1fr;
+  
+  }
 }
