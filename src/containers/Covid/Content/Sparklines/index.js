@@ -67,8 +67,7 @@ export default function Sparklines({ data: { monthly, daily } }) {
     }
     currentMonthDailyData.unshift(daily[i]);
   }
-  const lastDailyRecord = daily[daily.length - 1];
-  console.log(lastDailyRecord)
+  const todayRecord = daily[daily.length - 1];
   return <div className="cards-container">
 
     <MiniChartCard title="Укупно број тестираних лица"
@@ -77,7 +76,7 @@ export default function Sparklines({ data: { monthly, daily } }) {
         color: '#3b4863'
       }}
       tooltipFormatter={monthlyTooltip('Укупно тестираних')}
-      value={lastDailyRecord.sumTested}
+      value={todayRecord.sumTested}
     // growth={{ value: -16, text: " критично" }}
     />
 
@@ -88,9 +87,9 @@ export default function Sparklines({ data: { monthly, daily } }) {
         // color: '#3b4863'
       }}
       chartData={monthly.map(({ sumPositive }) => sumPositive).join(', ')}
-      value={lastDailyRecord.sumPositive}
+      value={todayRecord.sumPositive}
       tooltipFormatter={monthlyTooltip('Укупно регистрованих')}
-      growth={{ value: lastDailyRecord.percentOfInfectedSumComparedWithTestedSum + '%', text: " укупно тестираних лица" }}
+      growth={{ value: todayRecord.percentOfInfectedSumComparedWithTestedSum + '%', text: " укупно тестираних лица" }}
 
     />
 
@@ -101,7 +100,7 @@ export default function Sparklines({ data: { monthly, daily } }) {
         // color: '#3b4863'
       }}
       tooltipFormatter={dailyTooltip('Број тестираних')}
-      value={lastDailyRecord.testedForDate}
+      value={todayRecord.testedForDate}
     // growth={{ value: -16, text: " критично" }}
     />
 
@@ -113,8 +112,8 @@ export default function Sparklines({ data: { monthly, daily } }) {
         // color: '#3b4863'
       }}
       tooltipFormatter={dailyTooltip('Број потврђених')}
-      value={lastDailyRecord.positiveForDate}
-      growth={{ value: lastDailyRecord.percentOfInfectedComparedWithTestedForDate + '%', text: " тестираних лица" }}
+      value={todayRecord.positiveForDate}
+      growth={{ value: todayRecord.percentOfInfectedComparedWithTestedForDate + '%', text: " тестираних лица" }}
     />
 
     <MiniChartCard title="Број хоспитализованих у последња 24 часа"
@@ -124,8 +123,8 @@ export default function Sparklines({ data: { monthly, daily } }) {
         // color: '#3b4863'
       }}
       tooltipFormatter={dailyTooltip('Број хоспитализованих')}
-      value={lastDailyRecord.hospitalizedForDate}
-      growth={{ value: lastDailyRecord.percentOfHospitalizedComparedWithInfectedSumForDate + '%', text: " укупно позитивних лица" }}
+      value={todayRecord.hospitalizedForDate}
+      growth={{ value: todayRecord.percentOfHospitalizedComparedWithInfectedSumForDate + '%', text: " укупно позитивних лица" }}
     />
 
 
@@ -136,7 +135,7 @@ export default function Sparklines({ data: { monthly, daily } }) {
         // color: '#3b4863'
       }}
       tooltipFormatter={dailyTooltip('Број преминулих')}
-      value={lastDailyRecord.deathsForDate}
+      value={todayRecord.deathsForDate}
     // growth={{ value: -16, text: " критично" }}
     />
   </div>
