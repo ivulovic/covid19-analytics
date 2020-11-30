@@ -19,7 +19,9 @@ export default function DailyCases({ data: { daily: initialDailyData } }) {
     const month = new Date(date).getMonth();
     const confirmed = [];
     const deaths = [];
-    data.forEach(({ date, positiveForDate, deathsForDate }) => {
+    const tested = [];
+    const hospitalized = [];
+    data.forEach(({ date, positiveForDate, deathsForDate, testedForDate, hospitalizedForDate }) => {
       const d = new Date(date);
       const y = d.getFullYear();
       const m = d.getMonth();
@@ -28,8 +30,10 @@ export default function DailyCases({ data: { daily: initialDailyData } }) {
       const ts = Date.UTC(y, m, day);
       confirmed.push([ts, positiveForDate]);
       deaths.push([ts, deathsForDate]);
+      tested.push([ts, testedForDate]);
+      hospitalized.push([ts, hospitalizedForDate])
     })
-    setDaily({ confirmed, deaths });
+    setDaily({ confirmed, deaths, tested, hospitalized });
   }
   if (!initialDailyData) {
     return null;

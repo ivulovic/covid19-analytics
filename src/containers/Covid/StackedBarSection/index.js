@@ -85,6 +85,16 @@ export default function StackedBarSection({ data }) {
         data: data.deaths,
         color: 'var(--danger)'
       },
+      {
+        name: 'Тестирани',
+        data: data.tested,
+        color: '#00b8d4'
+      },
+      {
+        name: 'Хоспитализовани',
+        data: data.hospitalized,
+        color: '#ffc107'
+      },
     ]
   };
 

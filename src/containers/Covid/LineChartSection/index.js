@@ -77,6 +77,16 @@ export default function LineChartSection({ data, type }) {
         data: data.deaths,
         color: 'var(--danger)'
       },
+      {
+        name: 'Тестирани',
+        data: data.tested,
+        color: '#00b8d4'
+      },
+      {
+        name: 'Хоспитализовани',
+        data: data.hospitalized,
+        color: '#ffc107'
+      },
     ]
   };
 
