@@ -7,7 +7,8 @@ export default function CasesOvertime({ data: { monthly } }) {
   const deaths = [];
   const tested = [];
   const hospitalized = [];
-  monthly.forEach(({ sumPositive, sumDeaths, sumTested, sumHospitalized, date }) => {
+  const onRespirator = [];
+  monthly.forEach(({ sumPositive, sumDeaths, sumTested, sumHospitalized, onRespiratorForDate, date }) => {
     const d = new Date(date);
     const ts = Date.UTC(d.getFullYear(), d.getMonth(), 1);
 
@@ -15,6 +16,7 @@ export default function CasesOvertime({ data: { monthly } }) {
     deaths.push([ts, sumDeaths]);
     tested.push([ts, sumTested]);
     hospitalized.push([ts, sumHospitalized]);
+    onRespirator.push([ts, onRespiratorForDate]);
   })
   return <div>
     <SectionTitle title={`Приказ промене стања током времена`} />
@@ -22,7 +24,8 @@ export default function CasesOvertime({ data: { monthly } }) {
       confirmed,
       deaths,
       tested,
-      hospitalized
+      hospitalized,
+      onRespirator,
     }} />
   </div>
 }

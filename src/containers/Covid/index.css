@@ -1,6 +1,13 @@
-.cards-container{
+.cards-container-3{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  margin: 15px 0px;
+}
+.cards-container-4{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
   margin: 15px 0px;
@@ -29,7 +36,8 @@ svg path{
   }
 }
 @media screen and (max-width: 480px) {
-  .cards-container{
+  .cards-container-3,
+  .cards-container-4{
     grid-template-columns: 1fr;
   
   }

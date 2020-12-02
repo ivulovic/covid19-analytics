@@ -21,7 +21,8 @@ export default function DailyCases({ data: { daily: initialDailyData } }) {
     const deaths = [];
     const tested = [];
     const hospitalized = [];
-    data.forEach(({ date, positiveForDate, deathsForDate, testedForDate, hospitalizedForDate }) => {
+    const onRespirator = [];
+    data.forEach(({ date, positiveForDate, deathsForDate, testedForDate, hospitalizedForDate, onRespiratorForDate }) => {
       const d = new Date(date);
       const y = d.getFullYear();
       const m = d.getMonth();
@@ -32,27 +33,31 @@ export default function DailyCases({ data: { daily: initialDailyData } }) {
       deaths.push([ts, deathsForDate]);
       tested.push([ts, testedForDate]);
       hospitalized.push([ts, hospitalizedForDate])
+      onRespirator.push([ts, onRespiratorForDate]);
     })
-    setDaily({ confirmed, deaths, tested, hospitalized });
+    setDaily({ confirmed, deaths, tested, hospitalized, onRespirator });
   }
   if (!initialDailyData) {
     return null;
   }
   const firstDate = initialDailyData[0].date;
+  const newestDate = initialDailyData[initialDailyData.length - 1].date;
   const getDateString = (d) => {
     return new Date(d).toISOString().split('T')[0];
   }
   const decreaseDailyMonth = () => {
-    const newDateTs = new Date(dailyDate).setMonth(new Date(dailyDate).getMonth() - 1);
-    if (new Date(newDateTs) < new Date(firstDate).getTime()) {
+    const [y, m, d] = firstDate.split('-');
+    const newDateTs = new Date(new Date(dailyDate).setMonth(new Date(dailyDate).getMonth() - 1)).setDate(parseInt(d));
+    if (newDateTs < new Date(firstDate).getTime()) {
       return;
     }
     const newDate = getDateString(newDateTs);
     setDailyDate(newDate);
   }
   const increaseDailyMonth = () => {
-    const newDateTs = new Date(dailyDate).setMonth(new Date(dailyDate).getMonth() + 1);
-    if (new Date(newDateTs) > new Date().getTime()) {
+    const [y, m, d] = newestDate.split('-');
+    const newDateTs = new Date(new Date(dailyDate).setMonth(new Date(dailyDate).getMonth() + 1)).setDate(parseInt(d))
+    if (newDateTs > new Date().getTime()) {
       return;
     }
     const newDate = getDateString(newDateTs);

@@ -87,6 +87,11 @@ export default function LineChartSection({ data, type }) {
         data: data.hospitalized,
         color: '#ffc107'
       },
+      {
+        name: 'Укупно на респиратору',
+        data: data.onRespirator,
+        color: '#fd7e14'
+      },
     ]
   };
 
